@@ -1,0 +1,21 @@
+route:
+  receiver: 'telegram-notifications'
+  group_by: ['alertname', 'instance']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 4h
+
+inhibit_rules:
+  - source_matchers:
+      - severity = "critical"
+    target_matchers:
+      - severity = "warning"
+    equal: ['instance']
+
+# Where to deliver the alerts
+receivers:
+  - name: 'telegram-notifications'
+    telegram_configs:
+      - bot_token_file: '/etc/alertmanager/telegram_token'
+        chat_id: 643054711
+        send_resolved: true 

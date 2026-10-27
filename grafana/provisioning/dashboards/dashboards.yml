@@ -1,0 +1,6 @@
+apiVersion: 1
+providers:
+  - name: node-exporter-full
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards
